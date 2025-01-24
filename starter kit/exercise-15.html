@@ -1,30 +1,138 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Exercise #15 || Animated logo</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercise #15 || Animated logo</title>
 
-	<!-- Reset -->
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/modern-normalize@2.0.0/modern-normalize.min.css">
+    <!-- Reset -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/modern-normalize@2.0.0/modern-normalize.min.css"
+    />
 
-	<style>
-		.container {
-			display: grid;
-			width: 100%;
-			height: 100vh;
-			place-content: center;
-			background-color: #F6E9FE;
-		}
+    <style>
+      .container {
+        display: grid;
+        width: 100%;
+        height: 100vh;
+        place-content: center;
+        background-color: #f6e9fe;
+      }
 
-		/* Air */
-	</style>
-</head>
-<body>
-	<div class="container">
-		<!-- Air -->
-	</div>
+      #Container {
+        padding: 20px;
+        overflow: visible;
+        box-sizing: content-box;
+      }
+      /* Air */
+      svg rect,
+      svg path {
+        stroke: #100319;
+        stroke-width: 20;
+        stroke-linecap: round;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Air -->
+      <svg
+        width="498"
+        height="373"
+        viewBox="0 0 498 373"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        id="Container"
+      >
+        <g id="Logo">
+          <rect
+            id="Middle"
+            x="165.955"
+            y="124.53"
+            width="165.178"
+            height="248.026"
+            rx="10.0971"
+            stroke="black"
+            stroke-width="0.517799"
+          />
+          <rect
+            id="Right"
+            x="331.651"
+            y="0.2589"
+            width="165.178"
+            height="248.026"
+            rx="10.0971"
+            stroke="black"
+            stroke-width="0.517799"
+          />
+          <rect
+            id="Left"
+            x="0.2589"
+            y="0.2589"
+            width="165.178"
+            height="248.026"
+            rx="10.0971"
+            stroke="black"
+            stroke-width="0.517799"
+          />
+        </g>
+      </svg>
+    </div>
 
-	<!-- Air -->
-</body>
+    <!-- Air -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+    <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/DrawSVGPlugin3.min.js"></script>
+
+    <script>
+      const tl = gsap.timeline({
+        repeat: -1,
+        repeatDelay: 1.6,
+        yoyo: true
+      });
+
+      gsap.set("#Middle", {
+        scale: 0,
+        transformOrigin: "50% 50%"
+      });
+
+      // Middle
+      tl.to("#Middle", {
+        scale: 1,
+        rotation: 360,
+        duration: 1.2,
+        ease: "elastic.out"
+      });
+
+      // Left
+      tl.fromTo(
+        "#Left",
+        {
+          drawSVG: "100% 100%"
+        },
+        {
+          drawSVG: "0% 100%",
+          duration: 1.2,
+          ease: "power4.inOut"
+        }
+      );
+
+      tl.fromTo(
+        "#Right",
+        {
+          drawSVG: "0% 0%"
+        },
+        {
+          drawSVG: "0% 100%",
+          duration: 1.2,
+          ease: "power4.inOut"
+        }
+      );
+
+      tl.to("Middle, #Left, #Right", {
+        stroke: "#A41FF6",
+        duration: 0.4
+      });
+    </script>
+  </body>
 </html>
